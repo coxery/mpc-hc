@@ -40,6 +40,8 @@
 #endif
 #endif
 
+#define NO_VERSION_REV_NEEDED
+
 #ifdef NO_VERSION_REV_NEEDED
 #define MPC_VERSION_REV 0
 #else

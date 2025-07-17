@@ -87,7 +87,7 @@ unsigned VersionInfo::GetRevisionNumber()
 CString VersionInfo::GetGCCVersion()
 {
 #ifdef _WIN64
-    return GCC64_VERSION;
+    return "GCC64_VERSION";
 #else
     return GCC32_VERSION;
 #endif

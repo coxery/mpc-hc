@@ -40,9 +40,9 @@ namespace
 
     typedef int (WINAPI* tpGetSystemMetricsForDpi)(int nIndex, UINT dpi);
     HRESULT WINAPI GetDpiForMonitor(HMONITOR hmonitor, MONITOR_DPI_TYPE dpiType, UINT* dpiX, UINT* dpiY);
-    BOOL WINAPI SystemParametersInfoForDpi(UINT uiAction, UINT uiParam, PVOID pvParam, UINT fWinIni, UINT dpi);
-    int WINAPI GetSystemMetricsForDpi(int nIndex);
-    UINT WINAPI GetDpiForWindow(HWND hwnd);
+    BOOL WINAPI lSystemParametersInfoForDpi(UINT uiAction, UINT uiParam, PVOID pvParam, UINT fWinIni, UINT dpi);
+    int WINAPI lGetSystemMetricsForDpi(int nIndex);
+    UINT WINAPI lGetDpiForWindow(HWND hwnd);
     double WINAPI TextScaleFactor(void);
 }
 
@@ -57,7 +57,7 @@ DpiHelper::DpiHelper()
 }
 
 UINT DpiHelper::GetDPIForWindow(HWND wnd) {
-    const WinapiFunc<decltype(GetDpiForWindow)>
+    const WinapiFunc<decltype(lGetDpiForWindow)>
         fnGetDpiForWindow = { _T("user32.dll"), "GetDpiForWindow" };
     if (fnGetDpiForWindow) {
         return fnGetDpiForWindow(wnd);
@@ -121,7 +121,7 @@ void DpiHelper::GetMessageFont(LOGFONT* lf) {
 }
 
 bool DpiHelper::GetNonClientMetrics(PNONCLIENTMETRICSW ncm, bool& dpiCorrected) {
-    const WinapiFunc<decltype(SystemParametersInfoForDpi)>
+    const WinapiFunc<decltype(lSystemParametersInfoForDpi)>
         fnSystemParametersInfoForDpi = { L"user32.dll", "SystemParametersInfoForDpi" };
 
     ZeroMemory(ncm, sizeof(NONCLIENTMETRICS));
@@ -141,7 +141,7 @@ bool DpiHelper::GetNonClientMetrics(PNONCLIENTMETRICSW ncm, bool& dpiCorrected) 
 }
 
 int DpiHelper::GetSystemMetrics(int type) {
-    const WinapiFunc<decltype(GetSystemMetricsForDpi)>
+    const WinapiFunc<decltype(lGetSystemMetricsForDpi)>
         fnGetSystemMetricsForDpi = { L"user32.dll", "GetSystemMetricsForDpi" };
 
     bool dpiCorrected = false;

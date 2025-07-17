@@ -1,2 +1,4 @@
 /tmp
-libavutil/ffversion.h
+libavfilter
+libavutil
+libswresample

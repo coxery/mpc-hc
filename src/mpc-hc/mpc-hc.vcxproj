@@ -79,8 +79,9 @@
       <AdditionalIncludeDirectories>..\..\include;..\DSUtil;..\filters\renderer\VideoRenderers;..\thirdparty;..\thirdparty\AudioTools;..\thirdparty\MediaInfo\library\Source;..\thirdparty\freetype2\freetype2\include;..\thirdparty\ResizableLib\ResizableLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Manifest>
-      <AdditionalManifestFiles>$(ProjectDir)res\mpc-hc.exe.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
-      <EnableDpiAwareness>false</EnableDpiAwareness>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+      <EnableDpiAwareness>true</EnableDpiAwareness>
     </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Platform)'=='x64'">
@@ -125,7 +126,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="!$(Configuration.Contains('Lite'))">
     <Link>
-      <AdditionalDependencies>RARFileSource.res;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>RARFileSource.res;avutil.lib;swresample.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
